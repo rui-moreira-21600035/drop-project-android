@@ -46,7 +46,7 @@ class AssignmentAdapter(private val dataSet: ArrayList<Assignment>):
         // contents of the view with that element
         val context: Context = viewHolder.context
 
-        val assignment = getItem(position)!!
+        val assignment = getItem(position)
 
 //        var ID = assignment.uuid
 //        var DATE = assignment.date
@@ -62,10 +62,10 @@ class AssignmentAdapter(private val dataSet: ArrayList<Assignment>):
         viewHolder.itemView.setOnLongClickListener {
             val items = arrayOf("Edit", "Delete")
 
-            val alertDiag = MaterialAlertDialogBuilder(context)
+            MaterialAlertDialogBuilder(context)
             .setTitle(assignment.title)
             .setItems(items) { dialog, index ->
-                val toast = Toast.makeText(context,"Item #${index} selected", Toast.LENGTH_SHORT)
+                Toast.makeText(context,"Item #${index} selected", Toast.LENGTH_SHORT).show()
             }.show()
             true
         }
