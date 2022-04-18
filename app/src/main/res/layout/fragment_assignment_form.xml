@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.AssignmentFormFragment"
+    android:paddingHorizontal="30dp"
+    android:paddingVertical="10dp"
+    style="@style/AppTheme">
+
+    <!-- Assignment ID -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_assign_id"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/til_assign_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundColor="@color/white_gray"
+        android:paddingBottom="15dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox.Dense"
+            android:id="@+id/et_assign_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Assignment ID"
+            app:helperTextEnabled="true"
+            app:helperText="cs1Project1"
+            android:maxLines="1"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Assignment Name -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_assign_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/til_assign_id"
+        app:layout_constraintBottom_toTopOf="@id/til_assign_tags"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundColor="@color/white_gray"
+        android:paddingBottom="15dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_assign_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Assignment Name"
+            app:helperTextEnabled="true"
+            app:helperText="CS1 Main Project for 2018"
+            android:maxLines="1"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Assignment Tags -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_assign_tags"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/til_assign_name"
+        app:layout_constraintBottom_toTopOf="@id/til_assign_package"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundColor="@color/white_gray"
+        android:paddingBottom="15dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_assign_tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tags"
+            app:helperTextEnabled="true"
+            app:helperText="CS1 Main Project for 2018"
+            android:maxLines="1"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Package Tags -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_assign_package"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/til_assign_tags"
+        app:layout_constraintBottom_toTopOf="@id/til_assign_git"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundColor="@color/white_gray"
+        android:paddingBottom="15dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_assign_package"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Package"
+            app:helperTextEnabled="true"
+            app:helperText="edu.someUniversity.cs1.Project2018"
+            android:maxLines="1"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Git Repo URL -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_assign_git"
+        style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/til_assign_package"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundColor="@color/white_gray"
+        android:paddingBottom="15dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_assign_git"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Git Repository URL"
+            app:helperTextEnabled="true"
+            app:helperText="git@github.com:someuser/cs1Assignment1.git"
+            android:maxLines="1"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_prog_lang"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_assign_git">
+
+        <AutoCompleteTextView
+            android:id="@+id/autotv_prog_lang"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="none"
+            android:text="Choose Programming Language"
+            android:maxLines="1"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_leaderboard"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/til_prog_lang">
+
+        <!-- Inside text input layout add
+              an auto complete text view
+                and make its input type to none-->
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="none"
+            android:text="Don't Show Leaderboard"
+            android:maxLines="1"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/btn_cancel_form"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:textColor="@color/ulht_blue"
+        android:backgroundTint="@color/white_gray"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btn_save_form"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_leaderboard"
+        app:layout_constraintVertical_bias="0.951"/>
+
+    <Button
+        android:id="@+id/btn_save_form"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:backgroundTint="@color/ulht_blue"
+        android:text="Save"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/btn_cancel_form"
+        app:layout_constraintTop_toBottomOf="@+id/til_leaderboard"
+        app:layout_constraintVertical_bias="0.951" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

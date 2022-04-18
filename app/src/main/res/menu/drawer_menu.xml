@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group>
+        <item
+            android:id="@+id/dm_nav_open_assignments"
+            android:enabled="true"
+            android:icon="@drawable/ic_tasks"
+            app:iconTint="@color/dark_grey"
+            android:title="Open Assignments"
+            android:visible="true"/>
+        <item
+            android:id="@+id/dm_nav_archived_assignments"
+            android:enabled="true"
+            android:icon="@drawable/ic_archived"
+            app:iconTint="@color/dark_grey"
+            android:title="Archived Assignments"
+            android:visible="true"/>
+        <item
+            android:id="@+id/dm_nav_about"
+            android:enabled="true"
+            android:icon="@drawable/ic_about"
+            app:iconTint="@color/dark_grey"
+            android:title="About"
+            android:visible="true"/>
+    </group>
+    <item android:title="Outros">
+        <menu>
+            <item
+                android:id="@+id/dm_nav_sign_out"
+                android:enabled="true"
+                android:icon="@drawable/ic_logout"
+                app:iconTint="@color/dark_grey"
+                android:title="Sign Out"
+                android:visible="true"/>
+        </menu>
+    </item>
+</menu>
