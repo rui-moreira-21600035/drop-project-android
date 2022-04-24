@@ -1,36 +1,35 @@
 package pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.viewmodels
 
 import android.app.Application
+import android.widget.AutoCompleteTextView
+import android.widget.Button
 import androidx.lifecycle.AndroidViewModel
+import com.google.android.material.textfield.TextInputEditText
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.data.local.room.DropProjectDatabase
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.data.local.room.entities.Assignment
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.data.repositories.AssignmentRepository
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.domain.assignment.AssignmentLogic
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.listeners.OnAssignmentsLoaded
-import java.util.ArrayList
+import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.listeners.OnDatabaseEntry
 
-class AssignmentsViewModel(application: Application) : AndroidViewModel(application) {
-    // TODO: Implement ViewModel
-    // TODO: Implement Logic
-    // TODO: Implement Interfaces
+class AssignmentFormViewModel(application: Application) : AndroidViewModel(application) {
     private var listener: OnAssignmentsLoaded? = null
+
     private val localData = DropProjectDatabase.getInstance(application).assignmentDao()
     private val repository = AssignmentRepository(localData)
-    private val assignmentLogic = AssignmentLogic(repository)
 
-    fun loadAssignments(){
-        assignmentLogic.getAssignmentsList(listener)
-    }
+    private var assignmentLogic = AssignmentLogic(repository)
 
-    fun registerListener(onAssignmentsLoaded: OnAssignmentsLoaded){
-        listener = onAssignmentsLoaded
-    }
+    /** args **/
+    var assignId: String? = null
+    var assignName: String? = null
+    var assignTags: String? = null
+    var assignPackage: String? = null
+    var assignGit: String? = null
+    var assignProgLang: String? = null
+    var assignLeaderType: String? = null
 
-    fun unregisterListener(){
-        listener = null
-    }
-
-    fun deleteAssignmentById(id: String){
-        assignmentLogic.deleteAssignmentById(id, listener)
+    fun insertEntryDB(assignment: Assignment, listener: OnDatabaseEntry){
+        assignmentLogic.insertAssignment(assignment, listener)
     }
 }

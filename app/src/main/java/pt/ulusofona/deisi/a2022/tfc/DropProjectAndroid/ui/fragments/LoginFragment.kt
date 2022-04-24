@@ -12,6 +12,7 @@ import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.R
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.activities.MainActivity
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.utils.NavigationManager
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.viewmodels.LoginViewModel
+import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.viewmodels.MainViewModel
 
 class LoginFragment : Fragment() {
 
@@ -34,6 +35,7 @@ class LoginFragment : Fragment() {
 
         buttonLogin.setOnClickListener {
             val ab = (activity as AppCompatActivity).supportActionBar!!
+            requireActivity().supportFragmentManager.popBackStack()
             NavigationManager.goToAssignmentsFragment(parentFragmentManager, ab)                            // Chama o supportFragmentManager da MainActivity()
             ab.show()
 

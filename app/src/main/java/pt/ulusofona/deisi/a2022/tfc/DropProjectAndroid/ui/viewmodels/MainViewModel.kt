@@ -5,6 +5,5 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.ReportFragment
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
-    var currentFragment = 0
 
 }

@@ -9,17 +9,17 @@
     <Button
         android:id="@+id/btn_login"
         style="@style/login_button"
-        android:layout_width="265dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="73dp"
-        android:layout_marginTop="417dp"
-        android:layout_marginEnd="73dp"
-        android:layout_marginBottom="263dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="35dp"
+        android:layout_marginBottom="260dp"
         android:text="Efectuar Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/token_text_input"
+        app:layout_constraintTop_toTopOf="@+id/guideline_center_horizontal"
+        app:layout_constraintVertical_bias="0.488" />
 
     <ImageView
         android:id="@+id/iv_login_dp_logo"
@@ -34,17 +34,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/iv_login_img_logo"
-        android:layout_width="411dp"
-        android:layout_height="151dp"
-        android:src="@drawable/logo_ulht_alpha0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login"
-        app:layout_constraintVertical_bias="1.0" />
+
 
     <TextView
         android:id="@+id/tv_title"
@@ -59,7 +49,26 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/iv_login_dp_logo" />
+        app:layout_constraintTop_toBottomOf="@id/iv_login_dp_logo"
+        app:layout_constraintBottom_toTopOf="@id/token_text_input"/>
+
+    <LinearLayout
+        android:id="@+id/layout_ulht_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login"
+        app:layout_constraintVertical_bias="1.0">
+        <ImageView
+            android:id="@+id/iv_login_img_logo"
+            android:layout_width="411dp"
+            android:layout_height="151dp"
+            android:src="@drawable/logo_ulht_alpha0" />
+    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_center_horizontal"
@@ -105,7 +114,9 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:maxLines="1"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

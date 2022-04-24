@@ -1,10 +1,16 @@
 <resources>
-    <string name="app_name">DropProjectAndroid</string>
+    <string name="app_name">Drop Project Android</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string-array name="programming_languages">
         <item>Kotlin</item>
         <item>Java</item>
+    </string-array>
+
+    <string-array name="leaderboard_types">
+        <item>Do not show leaderboard</item>
+        <item>Top 3</item>
+        <item>Top 10</item>
     </string-array>
 </resources>

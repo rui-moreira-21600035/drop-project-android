@@ -25,11 +25,11 @@
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/main_toolbar"
+                android:theme="@style/ToolbarColoredMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingStart="5dp"
                 app:navigationIcon="@drawable/ic_menu"
-                app:navigationIconTint="@color/white"
                 app:title="@string/app_name"
                 app:titleTextColor="@color/white" />
 

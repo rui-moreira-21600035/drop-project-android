@@ -30,8 +30,6 @@ class AssignmentsFragment : Fragment(), OnAssignmentsLoaded {
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(this).get(AssignmentsViewModel::class.java)
-        viewModel.registerListener(this)
-        viewModel.loadAssignments()
         return inflater.inflate(R.layout.assignments_fragment, container, false)
     }
 
@@ -40,12 +38,19 @@ class AssignmentsFragment : Fragment(), OnAssignmentsLoaded {
         assignmentsRecyclerView = requireActivity().findViewById(R.id.assignments_recycler_view)
         fab = requireActivity().findViewById(R.id.fab_new_assignment)
         registerForContextMenu(assignmentsRecyclerView)
+        viewModel.registerListener(this)
+        assignmentsRecyclerView.adapter = AssignmentAdapter(ArrayList<Assignment>(),viewModel, activity as AppCompatActivity)
+        viewModel.loadAssignments()
 
         fab.setOnClickListener {
             val ab = (activity as AppCompatActivity).supportActionBar!!
             NavigationManager.goToAssignmentFormFragment(parentFragmentManager, ab)                            // Chama o supportFragmentManager da MainActivity()
             ab.show()
         }
+    }
+
+    fun refreshAdapter(assignmentList: ArrayList<Assignment>){
+        assignmentsRecyclerView.adapter = AssignmentAdapter(assignmentList, viewModel, activity as AppCompatActivity)
     }
 
     override fun onDestroy() {
@@ -55,9 +60,11 @@ class AssignmentsFragment : Fragment(), OnAssignmentsLoaded {
 
     override fun onAssignmentsLoaded(assignmentList: ArrayList<Assignment>) {
         /** Pede à UiThread para alterar a RecyclerView após notificado pelo listener do VM **/
-        requireActivity().runOnUiThread {
-            assignmentsRecyclerView.adapter = AssignmentAdapter(assignmentList)
+        activity?.runOnUiThread {
+            refreshAdapter(assignmentList)
         }
     }
+
+
 
 }

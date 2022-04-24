@@ -5,24 +5,25 @@
     android:layout_height="200dp"
     android:background="@color/ulht_blue"
     android:gravity="bottom"
-    android:padding="16dp">
+    android:padding="20dp">
 
     <ImageView
         android:id="@+id/drawer_menu_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_professor"
         android:layout_marginBottom="15dp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"
+        android:text="Professor"
+        android:textSize="18sp"
         android:textColor="@color/white"
         android:textStyle="bold" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="This is our Navigation Drawer"
+        android:text="p1234@ulusofona.pt"
         android:textColor="@color/white" />
 </LinearLayout>

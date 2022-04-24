@@ -24,7 +24,7 @@
             android:title="About"
             android:visible="true"/>
     </group>
-    <item android:title="Outros">
+    <item android:title="Session">
         <menu>
             <item
                 android:id="@+id/dm_nav_sign_out"
