@@ -9,21 +9,28 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.R
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.data.local.room.entities.Assignment
+import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.listeners.OnAssignmentFetched
+import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.listeners.OnDataChanged
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.listeners.OnDatabaseEntry
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.viewmodels.AssignmentFormViewModel
+import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.viewmodels.MainViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-class AssignmentFormFragment : Fragment(), OnDatabaseEntry{
+class AssignmentFormFragment : Fragment(), OnDatabaseEntry, OnAssignmentFetched{
+    private var id: String? = null
 
     private lateinit var viewModel: AssignmentFormViewModel
 
     private var errorDrawable: Drawable? = null
+
+    private var isNewAssignment = true
 
     /** EditTexts **/
     private lateinit var inputId: TextInputEditText
@@ -41,33 +48,17 @@ class AssignmentFormFragment : Fragment(), OnDatabaseEntry{
     private lateinit var btnCancel: Button
 
     companion object {
-        @JvmStatic fun newInstance(
-            id: String, name: String, tags: String, packageName: String, gitRepo: String,
-            programLang: String, leaderboardType: String) =
-            AboutFragment().apply {
+        @JvmStatic fun newInstance(id: String) = AssignmentFormFragment().apply {
                 arguments = Bundle().apply {
                     putString("id", id)
-                    putString("name", name)
-                    putString("tags", tags)
-                    putString("packageName", packageName)
-                    putString("gitRepo", gitRepo)
-                    putString("programLang", programLang)
-                    putString("leaderboardType", leaderboardType)
                 }
             }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(AssignmentFormViewModel::class.java)
         arguments?.let {
-            viewModel.assignId = it.getString("id")
-            viewModel.assignName = it.getString("name")
-            viewModel.assignTags = it.getString("tags")
-            viewModel.assignPackage = it.getString("packageName")
-            viewModel.assignGit = it.getString("gitRepo")
-            viewModel.assignProgLang = it.getString("programLang")
-            viewModel.assignLeaderType = it.getString("leaderboardType")
+            id = it.getString("id")!!
         }
     }
 
@@ -75,6 +66,7 @@ class AssignmentFormFragment : Fragment(), OnDatabaseEntry{
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        viewModel = ViewModelProvider(this).get(AssignmentFormViewModel::class.java)
         return inflater.inflate(R.layout.fragment_assignment_form, container, false)
     }
 
@@ -105,21 +97,37 @@ class AssignmentFormFragment : Fragment(), OnDatabaseEntry{
         btnSave = requireActivity().findViewById(R.id.btn_save_form)
         btnCancel = requireActivity().findViewById(R.id.btn_cancel_form)
 
-        loadInputs()
+        if(!id.isNullOrEmpty()){
+            viewModel.getAssignmentById(id.toString(), this)
+            isNewAssignment = false
+        }
 
         /** OnClick Botão Save **/
         btnSave.setOnClickListener {
             if(!validateInputs()){
                 val assignment = Assignment(
-                    UUID.randomUUID(),inputId.text.toString(), inputName.text.toString(),
+                    inputId.text.toString(), inputName.text.toString(),
                     inputTags.text.toString(), "", inputPackage.text.toString(),
                     inputGit.text.toString(), dropDownLang.text.toString(),
                     dropDownLeaderboard.text.toString(),
                     SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Date()), "")
+                clearInputs()
+                if(isNewAssignment){
+                    viewModel.insertEntryDB(assignment, this)
+                    requireActivity().runOnUiThread {
+                        Toast.makeText(
+                            requireActivity().applicationContext,
+                            "Assignment \"${assignment.title}\" created successfully",
+                            Toast.LENGTH_SHORT).show() }
+                } else {
+                    viewModel.updateEntryDB(assignment, this)
+                    requireActivity().runOnUiThread {
+                        Toast.makeText(
+                            requireActivity().applicationContext,
+                            "Assignment \"${assignment.title}\" edited successfully",
+                            Toast.LENGTH_SHORT).show() }
+                }
 
-                viewModel.insertEntryDB(assignment, this)
-                requireActivity().supportFragmentManager.popBackStack()
-                requireActivity().supportFragmentManager.beginTransaction().remove(this).commitAllowingStateLoss()
             }
         }
 
@@ -131,14 +139,13 @@ class AssignmentFormFragment : Fragment(), OnDatabaseEntry{
         }
     }
 
-    fun loadInputs(){
+    fun loadInputs(assignment: Assignment){
         /** Carrega os argumentos para edição de assignments **/
-        let {
-            inputId.setText(viewModel.assignId)
-            inputName.setText(viewModel.assignName)
-            inputTags.setText(viewModel.assignTags)
-            inputPackage.setText(viewModel.assignPackage)
-            inputGit.setText(viewModel.assignGit)}
+            inputId.setText(assignment.id)
+            inputName.setText(assignment.title)
+            inputTags.setText(assignment.tags)
+            inputPackage.setText(assignment.packageName)
+            inputGit.setText(assignment.gitRepoURL)
     }
 
     fun clearInputs(){
@@ -182,6 +189,12 @@ class AssignmentFormFragment : Fragment(), OnDatabaseEntry{
     override fun onDBEntry() {
         requireActivity().supportFragmentManager.popBackStack()
         requireActivity().supportFragmentManager.beginTransaction().remove(this).commitAllowingStateLoss()
+    }
+
+    override fun fillTextInputs(assignment: Assignment) {
+        activity?.runOnUiThread {
+            loadInputs(assignment)
+        }
     }
 
 }

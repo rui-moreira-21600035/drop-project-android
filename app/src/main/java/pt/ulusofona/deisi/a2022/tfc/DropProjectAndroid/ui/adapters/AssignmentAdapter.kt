@@ -21,14 +21,14 @@ class AssignmentAdapter(private val dataSet: ArrayList<Assignment>, private val 
     RecyclerView.Adapter<AssignmentAdapter.ViewHolder>(){
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        val resultImageView: ImageView
+        val assignmentImageView: ImageView
         val titleTextView: TextView
         val subjectTextView: TextView
         val dateCreatedTextView: TextView
         val context: Context
 
         init {
-            resultImageView = view.findViewById(R.id.iv_ic_assignment)
+            assignmentImageView = view.findViewById(R.id.iv_ic_assignment)
             titleTextView = view.findViewById(R.id.tv_assignment_title)
             subjectTextView = view.findViewById(R.id.tv_assignment_subject)
             dateCreatedTextView = view.findViewById(R.id.tv_date_created)
@@ -53,7 +53,7 @@ class AssignmentAdapter(private val dataSet: ArrayList<Assignment>, private val 
             .setIcon(R.drawable.ic_delete)
             .setPositiveButton("Yes, I'm Sure") { dialog, which ->
                 viewModel.deleteAssignmentById(assignment.id)
-                Toast.makeText(context, "${assignment.title} deleted", Toast.LENGTH_SHORT)
+                Toast.makeText(context, "Assignment \"${assignment.title}\" deleted successfully", Toast.LENGTH_SHORT)
                     .show()
             }
             .setNegativeButton("Cancel") { dialog, which ->
@@ -84,17 +84,14 @@ class AssignmentAdapter(private val dataSet: ArrayList<Assignment>, private val 
             .setItems(items) { dialog, index ->
                 when(index) {
                     0 -> {
-                        // ** TODO: Abre o AssignmentFormFragment para editar Assignment
+                        /** Abre o AssignmentFormFragment para editar Assignment **/
                         val ab = (activity as AppCompatActivity).supportActionBar!!
-                        NavigationManager.goToAssignmentFormFragment(activity.supportFragmentManager, ab)
+                        NavigationManager.goToAssignmentFormFragment(activity.supportFragmentManager, ab, assignment.id)
                         ab.show()
                     }
-                    // TODO: AlertDialog para confirmar eliminar Assignment
+                    /** AlertDialog para confirmar eliminar Assignment **/
                     1 -> {
                         firstAlertDialog.show()
-//                        viewModel.deleteAssignmentById(assignment.id)
-//                        Toast.makeText(context, "${assignment.title} deleted", Toast.LENGTH_SHORT)
-//                            .show()
                     }
                 }
             }.show()

@@ -6,7 +6,7 @@ import java.util.*
 
 @Entity(tableName = "assignments")
 data class Assignment(
-    @PrimaryKey val uuid: UUID,
+    @PrimaryKey
     val id: String,
     val title: String,
     val tags: String,

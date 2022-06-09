@@ -32,6 +32,8 @@
             app:helperTextEnabled="true"
             app:helperText="cs1Project1"
             android:maxLines="1"
+            android:inputType="text"
+            android:nextFocusDown="@+id/til_assign_name"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -56,6 +58,8 @@
             app:helperTextEnabled="true"
             app:helperText="CS1 Main Project for 2018"
             android:maxLines="1"
+            android:inputType="text"
+            android:nextFocusDown="@+id/til_assign_tags"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -81,6 +85,8 @@
             app:helperTextEnabled="true"
             app:helperText="CS1 Main Project for 2018"
             android:maxLines="1"
+            android:inputType="text"
+            android:nextFocusDown="@+id/et_assign_package"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -106,6 +112,8 @@
             app:helperTextEnabled="true"
             app:helperText="edu.someUniversity.cs1.Project2018"
             android:maxLines="1"
+            android:inputType="text"
+            android:nextFocusDown="@+id/til_assign_git"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -130,6 +138,8 @@
             app:helperTextEnabled="true"
             app:helperText="git@github.com:someuser/cs1Assignment1.git"
             android:maxLines="1"
+            android:inputType="text"
+            android:nextFocusDown="@+id/til_prog_lang"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -139,7 +149,6 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_assign_git">
@@ -148,9 +157,10 @@
             android:id="@+id/autotv_prog_lang"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="none"
             android:text="Choose Programming Language"
             android:maxLines="1"
+            android:inputType="none"
+            android:scrollHorizontally="true"
             />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -160,21 +170,18 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/til_prog_lang">
 
-        <!-- Inside text input layout add
-              an auto complete text view
-                and make its input type to none-->
         <AutoCompleteTextView
             android:id="@+id/autotv_leaderboard"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="none"
             android:text="Don't Show Leaderboard"
             android:maxLines="1"
+            android:inputType="none"
+            android:scrollHorizontally="true"
             />
 
     </com.google.android.material.textfield.TextInputLayout>

@@ -12,11 +12,15 @@ class AssignmentLogic(private val repository: AssignmentRepository) {
         repository.getAllAssignments(listener)
     }
 
-    fun deleteAssignmentById(id: String, listener: OnAssignmentsLoaded?){
-        repository.deleteAssignmentById(id, listener)
-    }
-
     fun insertAssignment(assignment: Assignment, listener:OnDatabaseEntry){
         repository.insertAssignment(assignment, listener)
+    }
+
+    fun updateAssignment(assignment: Assignment, listener:OnDatabaseEntry){
+        repository.updateAssignment(assignment, listener)
+    }
+
+    fun deleteAssignmentById(id: String, listener: OnAssignmentsLoaded?){
+        repository.deleteAssignmentById(id, listener)
     }
 }

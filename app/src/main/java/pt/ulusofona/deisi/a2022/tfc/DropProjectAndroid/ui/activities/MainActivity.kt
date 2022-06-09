@@ -22,6 +22,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.navigation.NavigationView
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.R
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.data.constants.Constants
+import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.listeners.OnDataChanged
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.utils.NavigationManager
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.viewmodels.AssignmentsViewModel
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.viewmodels.MainViewModel

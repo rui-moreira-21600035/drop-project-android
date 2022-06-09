@@ -9,27 +9,32 @@ import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.data.local.room.DropProje
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.data.local.room.entities.Assignment
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.data.repositories.AssignmentRepository
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.domain.assignment.AssignmentLogic
+import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.listeners.OnAssignmentFetched
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.listeners.OnAssignmentsLoaded
+import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.listeners.OnDataChanged
 import pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.ui.listeners.OnDatabaseEntry
 
 class AssignmentFormViewModel(application: Application) : AndroidViewModel(application) {
-    private var listener: OnAssignmentsLoaded? = null
 
     private val localData = DropProjectDatabase.getInstance(application).assignmentDao()
     private val repository = AssignmentRepository(localData)
 
     private var assignmentLogic = AssignmentLogic(repository)
 
+    private var listener : OnAssignmentFetched? = null
+
     /** args **/
-    var assignId: String? = null
-    var assignName: String? = null
-    var assignTags: String? = null
-    var assignPackage: String? = null
-    var assignGit: String? = null
-    var assignProgLang: String? = null
-    var assignLeaderType: String? = null
+    var assignId: String = ""
 
     fun insertEntryDB(assignment: Assignment, listener: OnDatabaseEntry){
         assignmentLogic.insertAssignment(assignment, listener)
+    }
+
+    fun updateEntryDB(assignment: Assignment, listener: OnDatabaseEntry){
+        assignmentLogic.updateAssignment(assignment, listener)
+    }
+
+    fun getAssignmentById(id: String, listener: OnAssignmentFetched){
+        repository.getAssignmentById(id, listener)
     }
 }

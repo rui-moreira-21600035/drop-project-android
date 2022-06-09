@@ -54,6 +54,13 @@ class NavigationManager() {
             currentFragment = Constants.ASSIGNMENT_FORM_FRAGMENT
         }
 
+        fun goToAssignmentFormFragment(fm: FragmentManager, actionBar: androidx.appcompat.app.ActionBar, id: String) {
+            val assignmentFormFrag = AssignmentFormFragment.newInstance(id)
+            placeFragment(fm, assignmentFormFrag)
+            actionBar.title = getFragmentName(Constants.ASSIGNMENT_FORM_FRAGMENT)
+            currentFragment = Constants.ASSIGNMENT_FORM_FRAGMENT
+        }
+
         fun goToAboutFragment(fm: FragmentManager, actionBar: androidx.appcompat.app.ActionBar) {
             placeFragment(fm, aboutFragment)
             actionBar.title = getFragmentName(Constants.ABOUT_FRAGMENT)

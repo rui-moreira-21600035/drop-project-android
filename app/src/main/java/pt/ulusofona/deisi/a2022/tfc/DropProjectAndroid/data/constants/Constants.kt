@@ -1,10 +1,13 @@
 package pt.ulusofona.deisi.a2022.tfc.DropProjectAndroid.data.constants
 
+import android.media.session.MediaSession
+
 class Constants {
     companion object{
         /** Valores Constantes Gerais **/
         const val BASE_URL = ""
         const val REQUEST_CODE = 100
+        const val TOKEN = "sihRf0g4ht0eNEa3MmdT" // TODO: ELIMINAR APÓS TESTES
 
         /** Valores Constantes dos Fragmentos **/
         const val SPLASHSCREEN_FRAGMENT                = 1
